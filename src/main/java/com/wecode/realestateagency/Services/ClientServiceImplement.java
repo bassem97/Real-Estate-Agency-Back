@@ -1,7 +1,8 @@
 package com.wecode.realestateagency.Services;
 
-import com.wecode.realestateagency.Models.Client;
+import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Repositories.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,9 @@ import java.util.List;
 @Service
 public class ClientServiceImplement implements ClientService {
 
-    private final ClientRepository clientRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
-    public ClientServiceImplement(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
 
     @Override
     public List<Client> getAllClients() { return  clientRepository.findAll() ;   }
@@ -31,15 +30,15 @@ public class ClientServiceImplement implements ClientService {
     public Client getClientByEmail(String email) { return clientRepository.findClientsByEmail(email); }
 
     @Override
-    public void updateClient(Client clientDetails, Long id) {
+    public Client updateClient(Client clientDetails, Long id) {
         Client client = clientRepository.findById(id).get();
-        client.setBirthDate(clientDetails.getBirthDate());
+        client.setBirthdate(clientDetails.getBirthdate());
         client.setEmail(clientDetails.getEmail());
         client.setFirstName(clientDetails.getFirstName());
         client.setLastName(clientDetails.getLastName());
-        client.setUserName(clientDetails.getUserName());
+        client.setUsername(clientDetails.getUsername());
         client.setPassword(clientDetails.getPassword());
         client.setPhoneNumber(clientDetails.getPhoneNumber());
-        clientRepository.saveAndFlush(client);
+        return clientRepository.saveAndFlush(client);
     }
 }

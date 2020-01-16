@@ -1,9 +1,7 @@
 package com.wecode.realestateagency.Controllers;
 
-import com.wecode.realestateagency.Models.Client;
+import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Services.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,7 +17,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @PostMapping("register")
+    @PostMapping("register" )
     public Client addClient(@RequestBody Client client){
         return clientService.addClient(client);
     }
@@ -30,12 +28,13 @@ public class ClientController {
     }
 
     @PutMapping("update/{id}")
-    public void updateClient(@Valid @RequestBody Client client, @PathVariable("id") long id){
-        clientService.updateClient(client, id);
+    public Client updateClient(@Valid @RequestBody Client client, @PathVariable("id") long id){
+        return clientService.updateClient(client, id);
     }
+
     @DeleteMapping("delete/{id}")
     public void deleteClient(@PathVariable("id") long id){
-        clientService.deleteClient(id);
+         clientService.deleteClient(id);
     }
 
     @GetMapping("client/{email}")
