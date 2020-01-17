@@ -7,14 +7,12 @@ import javax.validation.constraints.Size;
 public class Agency {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long IdClient;
+    private long IdAgency;
 
-    @Column(nullable = true)
+    @Column(unique = true)
     private String taxRegistration;
 
-    @Column(nullable = true)
     private String agencyName;
-
 
     @Size(min = 4, message = "Username Length Should Be At Least 4!")
     @Column(unique = true)
@@ -23,7 +21,6 @@ public class Agency {
     @Size(min = 6, message = "Password Length Should Be At Least 6!")
     private String password;
 
-    @Column(nullable = true)
     private int phoneNumber;
 
     @Column(unique = true)
@@ -40,12 +37,12 @@ public class Agency {
         this.email = email;
     }
 
-    public long getIdClient() {
-        return IdClient;
+    public long getIdAgency() {
+        return IdAgency;
     }
 
-    public void setIdClient(long idClient) {
-        IdClient = idClient;
+    public void setIdAgency(long idAgency) {
+        IdAgency = idAgency;
     }
 
     public String getTaxRegistration() {
@@ -99,7 +96,7 @@ public class Agency {
     @Override
     public String toString() {
         return "Agency{" +
-                "IdClient=" + IdClient +
+                "IdAgency=" + IdAgency +
                 ", taxRegistration='" + taxRegistration + '\'' +
                 ", agencyName='" + agencyName + '\'' +
                 ", username='" + username + '\'' +

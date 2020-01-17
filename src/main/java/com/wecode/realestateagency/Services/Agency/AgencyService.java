@@ -1,4 +1,4 @@
-package com.wecode.realestateagency.Services;
+package com.wecode.realestateagency.Services.Agency;
 
 import com.wecode.realestateagency.Models.Agency.Agency;
 import com.wecode.realestateagency.Models.Client.Client;
@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public interface AgencyServices {
+public interface AgencyService {
     public List<Agency> getAllAgencys();
     public Agency addAgency(Agency agency);
     public Agency updateAgency(Agency agency, Long id);

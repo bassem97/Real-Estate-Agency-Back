@@ -1,4 +1,4 @@
-package com.wecode.realestateagency.Services;
+package com.wecode.realestateagency.Services.Client;
 
 import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Repositories.ClientRepository;
@@ -27,7 +27,7 @@ public class ClientServiceImplement implements ClientService {
     public Client getClientById(Long id) { return clientRepository.findById(id).get(); }
 
     @Override
-    public Client getClientByEmail(String email) { return clientRepository.findClientsByEmail(email); }
+    public Client getClientByEmail(String email) { return clientRepository.findClientByEmail(email); }
 
     @Override
     public Client updateClient(Client clientDetails, Long id) {

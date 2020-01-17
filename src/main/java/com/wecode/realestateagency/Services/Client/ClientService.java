@@ -1,4 +1,4 @@
-package com.wecode.realestateagency.Services;
+package com.wecode.realestateagency.Services.Client;
 
 import com.wecode.realestateagency.Models.Client.Client;
 
