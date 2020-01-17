@@ -42,5 +42,10 @@ public class ClientController {
         return clientService.getClientByEmail(email);
     }
 
+    @GetMapping("client/{username}")
+    public Client getClientByUsername(@PathVariable("username") String username){
+        return clientService.getClientByUsername(username);
+    }
+
 
 }

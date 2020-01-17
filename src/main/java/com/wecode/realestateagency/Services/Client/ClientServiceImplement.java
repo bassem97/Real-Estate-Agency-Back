@@ -30,6 +30,9 @@ public class ClientServiceImplement implements ClientService {
     public Client getClientByEmail(String email) { return clientRepository.findClientByEmail(email); }
 
     @Override
+    public Client getClientByUsername(String username) { return clientRepository.findClientByUsername(username); }
+
+    @Override
     public Client updateClient(Client clientDetails, Long id) {
         Client client = clientRepository.findById(id).get();
         client.setBirthdate(clientDetails.getBirthdate());

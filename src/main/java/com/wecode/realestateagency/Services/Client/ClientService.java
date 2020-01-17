@@ -11,4 +11,5 @@ public interface ClientService {
     public void deleteClient(Long id);
     public Client getClientById(Long id);
     public Client getClientByEmail(String email);
+    public Client getClientByUsername(String username);
 }
