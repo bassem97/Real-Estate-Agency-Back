@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AgencyRepository extends JpaRepository<Agency,Long> {
     Agency findAgencyByEmail (String email);
+    Agency findAgencyByUsername (String userName);
+    Agency findAgencyBytaxRegistration (String taxRegistration);
+
+
 }

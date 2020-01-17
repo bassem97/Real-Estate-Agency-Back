@@ -13,4 +13,6 @@ public interface AgencyService {
     public void deleteAgency(Long id);
     public Agency getAgencyById(Long id);
     public Agency getAgencyByEmail(String email);
+    public Agency getAgencyByUsername(String userName);
+    public Agency getAgencyByTaxRegistration(String taxRegistration);
 }

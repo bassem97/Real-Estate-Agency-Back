@@ -21,22 +21,32 @@ public class AgencyServiceImplement implements AgencyService {
 
     @Override
     public Agency updateAgency(Agency agencyDetails, Long id) {
-        Agency agency = agencyRepository.findById(id).get();
-        agency.setTaxRegistration(agencyDetails.getTaxRegistration());
-        agency.setAgencyName(agencyDetails.getAgencyName());
-        agency.setEmail(agencyDetails.getEmail());
-        agency.setUsername(agencyDetails.getUsername());
-        agency.setPassword(agencyDetails.getPassword());
-        agency.setPhoneNumber(agencyDetails.getPhoneNumber());
-        return agencyRepository.saveAndFlush(agency);
+        if (agencyRepository.findById(id).isPresent()) {
+            Agency agency = agencyRepository.findById(id).get();
+            agency.setTaxRegistration(agencyDetails.getTaxRegistration());
+            agency.setAgencyName(agencyDetails.getAgencyName());
+            agency.setEmail(agencyDetails.getEmail());
+            agency.setUsername(agencyDetails.getUsername());
+            agency.setPassword(agencyDetails.getPassword());
+            agency.setPhoneNumber(agencyDetails.getPhoneNumber());
+            return agencyRepository.saveAndFlush(agency);
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void deleteAgency(Long id) { agencyRepository.deleteById(id);}
 
     @Override
-    public Agency getAgencyById(Long id) { return agencyRepository.findById(id).get();}
+    public Agency getAgencyById(Long id) { return agencyRepository.findById(id).isPresent()? agencyRepository.findById(id).get(): null;}
 
     @Override
     public Agency getAgencyByEmail(String email) { return agencyRepository.findAgencyByEmail(email); }
+
+    @Override
+    public Agency getAgencyByUsername(String userName) { return agencyRepository.findAgencyByUsername(userName);}
+
+    @Override
+    public Agency getAgencyByTaxRegistration(String taxRegistration) { return agencyRepository.findAgencyBytaxRegistration(taxRegistration); }
 }

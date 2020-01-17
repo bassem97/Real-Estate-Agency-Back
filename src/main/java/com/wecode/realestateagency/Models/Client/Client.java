@@ -2,9 +2,10 @@ package com.wecode.realestateagency.Models.Client;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
-public class Client {
+public class Client  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

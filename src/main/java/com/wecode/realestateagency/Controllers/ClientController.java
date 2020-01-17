@@ -23,29 +23,24 @@ public class ClientController {
     }
 
     @GetMapping("list")
-    public List<Client> getAllClients(){
-        return clientService.getAllClients();
-    }
+    public List<Client> getAllClients(){ return clientService.getAllClients(); }
 
     @PutMapping("update/{id}")
-    public Client updateClient(@Valid @RequestBody Client client, @PathVariable("id") long id){
-        return clientService.updateClient(client, id);
-    }
+    public Client updateClient(@Valid @RequestBody Client client, @PathVariable("id") long id){ return clientService.updateClient(client, id); }
 
     @DeleteMapping("delete/{id}")
     public void deleteClient(@PathVariable("id") long id){
          clientService.deleteClient(id);
     }
 
-    @GetMapping("client/{email}")
-    public Client getClientByEmail(@PathVariable("email") String email){
-        return clientService.getClientByEmail(email);
-    }
+    @GetMapping("clientById/{id}")
+    public Client getClientById(@PathVariable("id") Long id){ return clientService.getClientById(id); }
 
-    @GetMapping("client/{username}")
-    public Client getClientByUsername(@PathVariable("username") String username){
-        return clientService.getClientByUsername(username);
-    }
+    @GetMapping("clientByEmail/{email}")
+    public Client getClientByEmail(@PathVariable("email") String email){ return clientService.getClientByEmail(email); }
+
+    @GetMapping("clientByUsername/{username}")
+    public Client getClientByUsername(@PathVariable("username") String username){ return clientService.getClientByUsername(username); }
 
 
 }

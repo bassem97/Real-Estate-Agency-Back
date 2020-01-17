@@ -24,24 +24,27 @@ public class ClientServiceImplement implements ClientService {
     public void deleteClient(Long id) { clientRepository.deleteById(id); }
 
     @Override
-    public Client getClientById(Long id) { return clientRepository.findById(id).get(); }
+    public Client getClientById(Long id) { return clientRepository.findById(id).isPresent() ? clientRepository.findById(id).get(): null; }
 
     @Override
     public Client getClientByEmail(String email) { return clientRepository.findClientByEmail(email); }
 
     @Override
-    public Client getClientByUsername(String username) { return clientRepository.findClientByUsername(username); }
+    public Client getClientByUsername(String username) { return  clientRepository.findClientByUsername(username); }
 
+    //
     @Override
     public Client updateClient(Client clientDetails, Long id) {
-        Client client = clientRepository.findById(id).get();
-        client.setBirthdate(clientDetails.getBirthdate());
-        client.setEmail(clientDetails.getEmail());
-        client.setFirstName(clientDetails.getFirstName());
-        client.setLastName(clientDetails.getLastName());
-        client.setUsername(clientDetails.getUsername());
-        client.setPassword(clientDetails.getPassword());
-        client.setPhoneNumber(clientDetails.getPhoneNumber());
-        return clientRepository.saveAndFlush(client);
+        if(clientRepository.findById(id).isPresent()) {
+            Client client = clientRepository.findById(id).get();
+            client.setBirthdate(clientDetails.getBirthdate());
+            client.setEmail(clientDetails.getEmail());
+            client.setFirstName(clientDetails.getFirstName());
+            client.setLastName(clientDetails.getLastName());
+            client.setUsername(clientDetails.getUsername());
+            client.setPassword(clientDetails.getPassword());
+            client.setPhoneNumber(clientDetails.getPhoneNumber());
+            return clientRepository.saveAndFlush(client);
+        }else{ return null;}
     }
 }
