@@ -1,4 +1,4 @@
-package com.wecode.realestateagency.Models.Agency;
+package com.wecode.realestateagency.Models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

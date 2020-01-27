@@ -1,6 +1,6 @@
 package com.wecode.realestateagency.Controllers;
 
-import com.wecode.realestateagency.Models.Agency.Agency;
+import com.wecode.realestateagency.Models.Agency;
 import com.wecode.realestateagency.Services.Agency.AgencyService;
 import org.springframework.web.bind.annotation.*;
 
