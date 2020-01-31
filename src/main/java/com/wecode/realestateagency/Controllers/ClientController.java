@@ -8,8 +8,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin
-@RequestMapping("/Client/")
+@CrossOrigin("*")
+@RequestMapping("/client/")
 public class ClientController {
     private final ClientService clientService;
 
@@ -17,7 +17,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @PostMapping("register" )
+    @PostMapping("register")
     public Client addClient(@RequestBody Client client){
         return clientService.addClient(client);
     }
