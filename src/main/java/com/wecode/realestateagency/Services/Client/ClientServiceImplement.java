@@ -3,17 +3,13 @@ package com.wecode.realestateagency.Services.Client;
 import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Service(value="clientService")
-public class ClientServiceImplement implements ClientService, UserDetailsService {
+public class ClientServiceImplement implements ClientService {
 
 
     @Autowired
@@ -54,15 +50,5 @@ public class ClientServiceImplement implements ClientService, UserDetailsService
         }else{ return null;}
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Client user = clientRepository.findClientByUsername(s);
-        if(user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
-    }
-    private List<SimpleGrantedAuthority> getAuthority() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-    }
+
 }
