@@ -8,8 +8,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin
-@RequestMapping("/Agency/")
+@CrossOrigin("*")
+@RequestMapping("/agency/")
 public class AgencyController {
     private final AgencyService agencyService;
 

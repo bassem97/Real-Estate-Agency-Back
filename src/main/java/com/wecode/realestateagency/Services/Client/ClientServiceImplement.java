@@ -3,6 +3,7 @@ package com.wecode.realestateagency.Services.Client;
 import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -14,13 +15,16 @@ public class ClientServiceImplement implements ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
-
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public List<Client> getAllClients() { return  clientRepository.findAll() ;   }
 
     @Override
-    public Client addClient(Client client) { return clientRepository.saveAndFlush(client); }
+    public Client addClient(Client client) {
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
+        return clientRepository.saveAndFlush(client); }
 
     @Override
     public void deleteClient(Long id) { clientRepository.deleteById(id); }
@@ -44,7 +48,7 @@ public class ClientServiceImplement implements ClientService {
             client.setFirstName(clientDetails.getFirstName());
             client.setLastName(clientDetails.getLastName());
             client.setUsername(clientDetails.getUsername());
-            client.setPassword(clientDetails.getPassword());
+            client.setPassword(passwordEncoder.encode(client.getPassword()));
             client.setPhoneNumber(clientDetails.getPhoneNumber());
             return clientRepository.saveAndFlush(client);
         }else{ return null;}
