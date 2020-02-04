@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/Local/")
+@RequestMapping("/local/")
 public class LocalController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class LocalController {
     public List<Local> getAllLocals() { return localService.getAllLocals();}
 
     @PostMapping("add")
-    public Local addLocal(Local local) { return localService.addLocal(local);}
+    public  Local addLocal(@RequestBody Local local) { return localService.addLocal(local);}
 
     @PutMapping("update/{id}")
     public Local updateLocal(@Valid @RequestBody Local local, @PathVariable("id") long id){ return localService.updateLocal(local, id); }

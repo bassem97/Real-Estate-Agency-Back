@@ -4,6 +4,7 @@ import com.wecode.realestateagency.Models.Agency.Agency;
 import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Repositories.AgencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +14,16 @@ public class AgencyServiceImplement implements AgencyService {
     @Autowired
     private AgencyRepository agencyRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Override
     public List<Agency> getAllAgencys() { return agencyRepository.findAll();}
 
     @Override
-    public Agency addAgency(Agency agency) { return agencyRepository.saveAndFlush(agency);}
+    public Agency addAgency(Agency agency) {
+        agency.setPassword(passwordEncoder.encode(agency.getPassword()));
+        return agencyRepository.saveAndFlush(agency);}
 
     @Override
     public Agency updateAgency(Agency agencyDetails, Long id) {

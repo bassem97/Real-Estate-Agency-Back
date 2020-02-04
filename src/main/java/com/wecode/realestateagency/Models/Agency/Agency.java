@@ -22,9 +22,12 @@ public class Agency extends User {
 
     public Agency(){}
 
-
-
-
+    public Agency( String taxRegistration, String agencyName, int phoneNumber) {
+        super();
+        this.taxRegistration = taxRegistration;
+        this.agencyName = agencyName;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getTaxRegistration() {
         return taxRegistration;
