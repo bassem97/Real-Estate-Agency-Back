@@ -1,5 +1,8 @@
 package com.wecode.realestateagency.Models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +24,11 @@ public class Local {
     private float area;
 
     private String address;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "id_user", nullable = false)
+    private User user;
 
     public Local(){}
     public Local(String type, String description, Float price, String transcationType, int roomsNumber, float area, String address) {
@@ -95,6 +103,14 @@ public class Local {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

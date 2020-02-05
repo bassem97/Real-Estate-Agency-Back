@@ -75,14 +75,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 //	@Override
 //    public User save(UserDto user) {
 //	    User newUser = new User();
-//		if(user.getId() != null)
-//	    newUser.setId(user.getId());
+//		if(user.getIdUser() != null)
+//	    newUser.setIdUser(user.getIdUser());
 //
 //	    newUser.setUsername(user.getUsername());
 //	    if (user.getPassword() != null)
 //	    newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 //	    else
-//	    	newUser.setPassword(findById(newUser.getId()).getPassword());
+//	    	newUser.setPassword(findById(newUser.getIdUser()).getPassword());
 //		newUser.setSalary(user.getSalary());
 //		newUser.setBirthdate(user.getBirthdate());
 //		newUser.setEmail(user.getEmail());

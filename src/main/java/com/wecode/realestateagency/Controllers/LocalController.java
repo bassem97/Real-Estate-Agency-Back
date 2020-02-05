@@ -31,7 +31,7 @@ public class LocalController {
         localService.deleteLocal(id);
     }
 
-    @GetMapping("LocalById/{id}")
+    @GetMapping("localById/{id}")
     public Local getClientById(@PathVariable("id") Long id){ return localService.getLocalById(id); }
 
     @GetMapping("find/{criteria}")
