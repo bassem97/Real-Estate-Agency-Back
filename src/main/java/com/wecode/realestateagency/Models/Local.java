@@ -1,12 +1,18 @@
 package com.wecode.realestateagency.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-public class Local {
+@Table(name = "local")
+public class Local implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long IdLocal;
@@ -29,6 +35,15 @@ public class Local {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER,
+                cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                } ,
+                mappedBy = "wishList")
+    @JsonIgnoreProperties(value = "wishList",allowSetters = true)
+    private List<User> userWished = new ArrayList<>();;
 
     public Local(){}
     public Local(String type, String description, Float price, String transcationType, int roomsNumber, float area, String address) {
@@ -111,6 +126,14 @@ public class Local {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<User> getUserWished() {
+        return userWished;
+    }
+
+    public void setUserWished(List<User> userWished) {
+        this.userWished = userWished;
     }
 
     @Override

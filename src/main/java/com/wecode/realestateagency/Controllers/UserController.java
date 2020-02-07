@@ -1,12 +1,16 @@
 package com.wecode.realestateagency.Controllers;
 
+import com.wecode.realestateagency.Models.Local;
 import com.wecode.realestateagency.Models.User;
+import com.wecode.realestateagency.Services.Local.LocalService;
 import com.wecode.realestateagency.Services.User.UserService;
 import com.wecode.realestateagency.utill.ChangePasswordVM;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @CrossOrigin(origins = "*")
@@ -17,7 +21,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+    @GetMapping("list")
+    public List<User> getAllUsers(){ return userService.findAll(); }
 
 
 //   @PreAuthorize("hasRole('ADMIN')")
@@ -33,6 +38,15 @@ public class UserController {
         return userService.findById(id);
     }
 
+    @RequestMapping(value = "/addLocalToWishlist/{idUser}/{idLocal}", method = RequestMethod.POST)
+    public void addLocalToWishlist(@PathVariable(value = "idUser") Long idUser,@PathVariable(value = "idLocal") Long idLocal){
+          userService.addLocaltoWishlist(idUser,idLocal);
+    }
+
+    @RequestMapping(value = "/removeLocalFromWishlist/{idUser}/{idLocal}", method = RequestMethod.POST)
+    public void removeLocalFromWishlist(@PathVariable(value = "idUser") Long idUser,@PathVariable(value = "idLocal") Long idLocal){
+         userService.removeLocalfromWishlist(idUser,idLocal);
+    }
 ////    @PreAuthorize("hasRole('ADMIN')")
 //    @RequestMapping(value="/users", method = RequestMethod.POST)
 //    public User saveUser(@RequestBody User user){

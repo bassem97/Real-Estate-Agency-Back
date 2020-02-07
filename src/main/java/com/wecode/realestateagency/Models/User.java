@@ -5,13 +5,17 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 @DiscriminatorColumn(name = "dtype")
-public class User {
+@Table(name = "user")
+public class User implements Serializable {
     @Id
     @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +39,17 @@ public class User {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties(value = {"user"}, allowSetters = true)
     private List<Local> locals ;
+
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "WISH_LIST",
+               joinColumns = {@JoinColumn(name = "USER_ID") },
+                inverseJoinColumns = {@JoinColumn(name = "LOCAL_ID") })
+    @JsonIgnoreProperties(value="userWished",allowSetters = true)
+    private List<Local> wishList =new ArrayList<>(); ;
 
 
 
@@ -100,5 +115,13 @@ public class User {
 
     public void setLocals(List<Local> locals) {
         this.locals = locals;
+    }
+
+    public List<Local> getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(List<Local> wishList) {
+        this.wishList = wishList;
     }
 }

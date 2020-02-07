@@ -32,6 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/agency/list",
                                         "/agency/register",
                                         "/user/auth",
+                                        "/user/list",
+                                        "/user/users/*",
+                                        "/user/addLocalToWishlist/*/*",
+                                        "/user/removeLocalFromWishlist/*/*",
 
                                         "/agency/agencyByEmail/*",
                                         "/agency/agencyByUsername/*",

@@ -14,7 +14,6 @@ public interface LocalService {
      Local updateLocal(Local local, Long id);
      void deleteLocal(Long id);
      Local getLocalById(Long id);
-
      List<Local> find(String criteria );
      List<Local> findByAdress(String adress );
 

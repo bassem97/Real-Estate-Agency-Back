@@ -1,8 +1,11 @@
 package com.wecode.realestateagency.Services.User;
 
 
+import com.wecode.realestateagency.Models.Local;
 import com.wecode.realestateagency.Models.User;
+import com.wecode.realestateagency.Repositories.LocalRepository;
 import com.wecode.realestateagency.Repositories.UserRepository;
+import com.wecode.realestateagency.Services.Local.LocalService;
 import com.wecode.realestateagency.utill.ChangePasswordVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +34,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	@Autowired
 	public BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	private LocalRepository localRepository;
+
+
+
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findUserByUsername(username);
 		if(user == null){
@@ -51,9 +59,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	}
 
 	public List<User> findAll() {
-		List<User> list = new ArrayList<>();
-		userRepository.findAll().iterator().forEachRemaining(list::add);
-		return list;
+		return userRepository.findAll();
 	}
 
 	@Override
@@ -69,6 +75,24 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	@Override
 	public User findById(Long id) {
 		return userRepository.findById(id).get();
+	}
+
+	@Override
+	public void addLocaltoWishlist(Long idUser, Long idLocal) {
+		User user =  userRepository.findById(idUser).get();
+		Local local = localRepository.findById(idLocal).get();
+		user.getWishList().add(local);
+		local.getUserWished().add(user);
+		userRepository.saveAndFlush(user);
+	}
+
+	@Override
+	public void removeLocalfromWishlist(Long idUser, Long idLocal) {
+		User user =  userRepository.findById(idUser).get();
+		Local local = localRepository.findById(idLocal).get();
+		user.getWishList().remove(local);
+		local.getUserWished().remove(user);
+		userRepository.saveAndFlush(user);
 	}
 
 
@@ -130,4 +154,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		else return false;
 
 	}
+
+
+
+
 }

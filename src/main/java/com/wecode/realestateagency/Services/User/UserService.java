@@ -1,6 +1,7 @@
 package com.wecode.realestateagency.Services.User;
 
 
+import com.wecode.realestateagency.Models.Local;
 import com.wecode.realestateagency.Models.User;
 import com.wecode.realestateagency.utill.ChangePasswordVM;
 
@@ -14,5 +15,7 @@ public interface UserService {
     User findOne(String username);
     User update(User user);
     User findById(Long id);
+    void addLocaltoWishlist(Long idUser, Long idLocal);
+    void removeLocalfromWishlist(Long idUser, Long idLocal);
     public boolean changePassword(ChangePasswordVM vm, String username);
 }
