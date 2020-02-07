@@ -1,12 +1,11 @@
 package com.wecode.realestateagency.Services.Client;
 
-import com.wecode.realestateagency.Models.Client.Client;
+import com.wecode.realestateagency.Models.Client;
 import com.wecode.realestateagency.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service(value="clientService")

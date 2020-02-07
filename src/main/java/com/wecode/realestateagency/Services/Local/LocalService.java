@@ -1,8 +1,6 @@
 package com.wecode.realestateagency.Services.Local;
 
-import com.wecode.realestateagency.Models.Client.Client;
 import com.wecode.realestateagency.Models.Local;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

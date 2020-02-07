@@ -1,9 +1,8 @@
-package com.wecode.realestateagency.Models.Agency;
+package com.wecode.realestateagency.Models;
 
 import com.wecode.realestateagency.Models.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Agency extends User {

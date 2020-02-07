@@ -1,7 +1,6 @@
 package com.wecode.realestateagency.Services.Agency;
 
-import com.wecode.realestateagency.Models.Agency.Agency;
-import com.wecode.realestateagency.Models.Client.Client;
+import com.wecode.realestateagency.Models.Agency;
 import com.wecode.realestateagency.Repositories.AgencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

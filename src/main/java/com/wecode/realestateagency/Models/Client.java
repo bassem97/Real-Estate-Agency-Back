@@ -1,10 +1,8 @@
-package com.wecode.realestateagency.Models.Client;
+package com.wecode.realestateagency.Models;
 
 import com.wecode.realestateagency.Models.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 @Entity
 public class Client extends User {

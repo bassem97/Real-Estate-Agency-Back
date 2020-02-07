@@ -1,6 +1,6 @@
 package com.wecode.realestateagency.Services.Client;
 
-import com.wecode.realestateagency.Models.Client.Client;
+import com.wecode.realestateagency.Models.Client;
 
 import java.util.List;
 
