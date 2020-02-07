@@ -40,16 +40,14 @@ public class User implements Serializable {
     @JsonIgnoreProperties(value = {"user"}, allowSetters = true)
     private List<Local> locals ;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.ALL})
     @JoinTable(name = "WISH_LIST",
                joinColumns = {@JoinColumn(name = "USER_ID") },
-                inverseJoinColumns = {@JoinColumn(name = "LOCAL_ID") })
+                inverseJoinColumns = {@JoinColumn(name = "LOCAL_ID") },
+            uniqueConstraints={@UniqueConstraint(columnNames={"USER_ID", "LOCAL_ID"})})
     @JsonIgnoreProperties(value="userWished",allowSetters = true)
-    private List<Local> wishList =new ArrayList<>(); ;
+    private List<Local> wishList =new ArrayList<>();
 
 
 

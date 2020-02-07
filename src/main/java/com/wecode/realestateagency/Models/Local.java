@@ -36,14 +36,9 @@ public class Local implements Serializable {
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-                cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-                } ,
-                mappedBy = "wishList")
+    @ManyToMany(mappedBy = "wishList")
     @JsonIgnoreProperties(value = "wishList",allowSetters = true)
-    private List<User> userWished = new ArrayList<>();;
+    private List<User> userWished = new ArrayList<>();
 
     public Local(){}
     public Local(String type, String description, Float price, String transcationType, int roomsNumber, float area, String address) {
