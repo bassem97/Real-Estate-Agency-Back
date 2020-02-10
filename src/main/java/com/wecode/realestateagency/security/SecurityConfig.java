@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/local/list",
                                         "/local/add",
                                         "/local/localById/*",
+                                        "/local/isWishedByUser/*/*",
                                         "/agency/list",
                                         "/agency/register",
                                         "/user/auth",

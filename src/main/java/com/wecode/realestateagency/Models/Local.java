@@ -34,6 +34,7 @@ public class Local implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_user", nullable = false)
+    @JsonIgnoreProperties(value={"locals","wishList"},allowSetters = true)
     private User user;
 
     @ManyToMany(mappedBy = "wishList")

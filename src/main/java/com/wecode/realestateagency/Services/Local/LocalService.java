@@ -1,8 +1,10 @@
 package com.wecode.realestateagency.Services.Local;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.wecode.realestateagency.Models.Local;
 
 import java.util.List;
+import java.util.Observable;
 
 
 public interface LocalService {

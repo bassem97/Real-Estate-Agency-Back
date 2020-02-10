@@ -37,8 +37,8 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnoreProperties(value = {"user"}, allowSetters = true)
-    private List<Local> locals ;
+    @JsonIgnoreProperties(value ={ "userWished","user"}, allowSetters = true)
+    private List<Local> locals = new ArrayList<>() ;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.ALL})

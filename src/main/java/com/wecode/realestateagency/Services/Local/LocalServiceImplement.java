@@ -2,6 +2,8 @@ package com.wecode.realestateagency.Services.Local;
 
 import com.wecode.realestateagency.Models.Local;
 import com.wecode.realestateagency.Repositories.LocalRepository;
+import com.wecode.realestateagency.Repositories.UserRepository;
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ public class LocalServiceImplement implements LocalService {
 
     @Autowired
     private LocalRepository localRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Local> getAllLocals() { return localRepository.findAll();}
@@ -49,4 +53,6 @@ public class LocalServiceImplement implements LocalService {
     public List<Local> findByAdress(String address) {
         return localRepository.findByAddress(address);
     }
+
+    
 }
