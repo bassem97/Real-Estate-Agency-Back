@@ -55,11 +55,9 @@ public class UserController {
     public User modifyUser(@RequestBody User user){
        return userService.update(user);
     }
-    @RequestMapping(value = "/password", method = RequestMethod.POST)
-    public Boolean changePassword(@RequestBody ChangePasswordVM user)
-    {
-        User us = userService.findOne(SecurityContextHolder.getContext().getAuthentication().getName());
-        return userService.changePassword(user, us.getUsername());
+    @RequestMapping(value = "password/{username}", method = RequestMethod.POST)
+    public Boolean changePassword(@RequestBody ChangePasswordVM user, @PathVariable(value = "username") String username){
+        return userService.changePassword(user, username);
     }
     @RequestMapping(value = "/userByUsername/{username}", method = RequestMethod.GET)
     public User findByUsername(@PathVariable(value = "username") String us){

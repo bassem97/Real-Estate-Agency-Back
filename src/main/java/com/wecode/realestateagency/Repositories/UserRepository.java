@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 @org.springframework.stereotype.Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    public User findUserByUsername(String username);
+     User findUserByUsername(String username);
     User findById(long idUSer);
 
 //    @Modifying
