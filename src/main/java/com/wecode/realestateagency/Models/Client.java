@@ -16,21 +16,14 @@ public class Client extends User {
     private String lastName;
 
 
-
-
-    @Column(nullable = true)
-    private int phoneNumber;
-
-
     @Column(nullable = true)
     private String birthdate;
     public Client(){
     }
 
-    public Client(String firstName, String lastName, int phoneNumber, String birthdate) {
+    public Client(String firstName, String lastName, String birthdate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
         this.birthdate = birthdate;
     }
 
@@ -51,13 +44,6 @@ public class Client extends User {
         this.lastName = lastName;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public String getBirthdate() {
         return birthdate;

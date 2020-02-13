@@ -13,19 +13,12 @@ public class Agency extends User {
 
     private String agencyName;
 
-
-
-    private int phoneNumber;
-
-
-
     public Agency(){}
 
-    public Agency( String taxRegistration, String agencyName, int phoneNumber) {
+    public Agency( String taxRegistration, String agencyName) {
         super();
         this.taxRegistration = taxRegistration;
         this.agencyName = agencyName;
-        this.phoneNumber = phoneNumber;
     }
 
     public String getTaxRegistration() {
@@ -44,11 +37,5 @@ public class Agency extends User {
         this.agencyName = agencyName;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 }

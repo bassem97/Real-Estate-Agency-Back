@@ -54,5 +54,5 @@ public class LocalServiceImplement implements LocalService {
         return localRepository.findByAddress(address);
     }
 
-    
+
 }

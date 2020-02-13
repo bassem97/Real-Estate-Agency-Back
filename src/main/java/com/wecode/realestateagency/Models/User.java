@@ -27,6 +27,9 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
+    private String phoneNumber;
+
     @Column(name = "dtype", nullable = false, insertable = false, updatable = false)
     private String dtype;
 
@@ -40,7 +43,7 @@ public class User implements Serializable {
     @JsonIgnoreProperties(value ={ "userWished","user"}, allowSetters = true)
     private List<Local> locals = new ArrayList<>() ;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.ALL})
     @JoinTable(name = "WISH_LIST",
                joinColumns = {@JoinColumn(name = "USER_ID") },
@@ -89,6 +92,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getDtype() {

@@ -39,10 +39,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/user/removeLocalFromWishlist/*/*",
 
                                         "/agency/agencyByEmail/*",
+                                        "/agency/*/*",
                                         "/agency/agencyByUsername/*",
                                         "/agency/agencyByTaxRegistration/*",
                                         "/client/clientByUsername/*",
                                         "/client/clientByEmail/*",
+                                        "/client/*/*",
                                         "/client/register")
                 .permitAll()
                 .anyRequest()

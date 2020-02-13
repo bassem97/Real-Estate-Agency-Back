@@ -47,7 +47,6 @@ public class ClientServiceImplement implements ClientService {
             client.setFirstName(clientDetails.getFirstName());
             client.setLastName(clientDetails.getLastName());
             client.setUsername(clientDetails.getUsername());
-            client.setPassword(passwordEncoder.encode(client.getPassword()));
             client.setPhoneNumber(clientDetails.getPhoneNumber());
             return clientRepository.saveAndFlush(client);
         }else{ return null;}

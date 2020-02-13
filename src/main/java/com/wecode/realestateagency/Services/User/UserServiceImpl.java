@@ -1,10 +1,14 @@
 package com.wecode.realestateagency.Services.User;
 
 
+import com.wecode.realestateagency.Models.Agency;
+import com.wecode.realestateagency.Models.Client;
 import com.wecode.realestateagency.Models.Local;
 import com.wecode.realestateagency.Models.User;
 import com.wecode.realestateagency.Repositories.LocalRepository;
 import com.wecode.realestateagency.Repositories.UserRepository;
+import com.wecode.realestateagency.Services.Agency.AgencyService;
+import com.wecode.realestateagency.Services.Client.ClientService;
 import com.wecode.realestateagency.Services.Local.LocalService;
 import com.wecode.realestateagency.utill.ChangePasswordVM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,10 +37,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	 *
 	 */
 	@Autowired
-	public BCryptPasswordEncoder bCryptPasswordEncoder;
+	PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private LocalRepository localRepository;
+
 
 
 
@@ -134,20 +140,20 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 //
 //		return userRepository.save(newUser);
 //    }
-
+@Override
     public User update(User user){
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
+
 	}
 
 	@Override
 	public boolean changePassword(ChangePasswordVM vm , String username){
 		User user = findOne(username);
-		System.out.println("----------------"+ bCryptPasswordEncoder.encode(vm.getOldPassword()) + "--------------------" + user.getPassword());
+		System.out.println("----------------"+passwordEncoder.encode(vm.getOldPassword()) + "--------------------" + user.getPassword());
 		System.out.println("------" + vm.getOldPassword());
 
-		if (bCryptPasswordEncoder.matches(vm.getOldPassword(),user.getPassword())){
-			user.setPassword(bCryptPasswordEncoder.encode(vm.getNewPassword()));
+		if (passwordEncoder.matches(vm.getOldPassword(),user.getPassword())){
+			user.setPassword(passwordEncoder.encode(vm.getNewPassword()));
 			userRepository.save(user);
 			return true;
 		}

@@ -32,7 +32,6 @@ public class AgencyServiceImplement implements AgencyService {
             agency.setAgencyName(agencyDetails.getAgencyName());
             agency.setEmail(agencyDetails.getEmail());
             agency.setUsername(agencyDetails.getUsername());
-            agency.setPassword(agencyDetails.getPassword());
             agency.setPhoneNumber(agencyDetails.getPhoneNumber());
             return agencyRepository.saveAndFlush(agency);
         } else {
