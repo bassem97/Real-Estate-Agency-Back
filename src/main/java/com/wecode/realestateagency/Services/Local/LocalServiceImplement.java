@@ -5,8 +5,14 @@ import com.wecode.realestateagency.Repositories.LocalRepository;
 import com.wecode.realestateagency.Repositories.UserRepository;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Service(value="localService")
@@ -21,7 +27,13 @@ public class LocalServiceImplement implements LocalService {
     public List<Local> getAllLocals() { return localRepository.findAll();}
 
     @Override
-    public Local addLocal(Local local) { return localRepository.saveAndFlush(local);}
+    public Local addLocal(Local local) {  return localRepository.saveAndFlush(local);}
+
+    @Override
+    public String[] uploadFile(MultipartFile file) throws IOException {
+        file.transferTo(new File("C:\\Users\\Bassem's PC\\Desktop\\DSI3\\stage perfectionnement\\real estate agency\\realEstateAgency\\src\\assets\\images\\"+ file.getOriginalFilename()));
+        return new String[]{"C:\\Users\\Bassem's PC\\Desktop\\DSI3\\stage perfectionnement\\real estate agency\\realEstateAgency\\src\\assets\\images\\", file.getOriginalFilename()};
+    }
 
     @Override
     public Local updateLocal(Local local, Long id) {

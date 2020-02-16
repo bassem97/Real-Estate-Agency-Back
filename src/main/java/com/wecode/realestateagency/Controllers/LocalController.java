@@ -51,17 +51,24 @@ public class LocalController {
         return localService.findByAdress(address);
     }
 
-    @RequestMapping(value="upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-        File convertFile = new File("C:\\Users\\Bassem's PC\\Desktop\\DSI3\\stage perfectionnement\\real estate agency back\\src\\main\\resources\\Images"+ file.getOriginalFilename());
-        convertFile.createNewFile();
-        FileOutputStream fout = new FileOutputStream(convertFile);
-        fout.write(file.getBytes());
-        fout.close();
-        return new ResponseEntity<>("File is uploaded ", HttpStatus.OK) ;
+//    @RequestMapping(value="upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+//    public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+//        File convertFile = new File("C:\\Users\\Bassem's PC\\Desktop\\DSI3\\stage perfectionnement\\real estate agency back\\src\\main\\resources\\images\\"+ file.getOriginalFilename());
+//        convertFile.createNewFile();
+//        FileOutputStream fout = new FileOutputStream(convertFile);
+//        fout.write(file.getBytes());
+//        fout.close();
+//        return new ResponseEntity<>("File is uploaded ", HttpStatus.OK) ;
+//    }
+
+    @RequestMapping(value="upload", method = RequestMethod.POST)
+    public String[] uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+        return this.localService.uploadFile(file);
     }
 
 
 
 
-}
+
+
+    }

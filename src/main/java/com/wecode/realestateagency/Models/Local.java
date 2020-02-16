@@ -31,6 +31,11 @@ public class Local implements Serializable {
 
     private String address;
 
+    public String fileName;
+
+    private String filePath;
+
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_user", nullable = false)
@@ -42,7 +47,7 @@ public class Local implements Serializable {
     private List<User> userWished = new ArrayList<>();
 
     public Local(){}
-    public Local(String type, String description, Float price, String transcationType, int roomsNumber, float area, String address) {
+    public Local(String type, String description, Float price, String transcationType, int roomsNumber, float area, String address, String fileName, String filePath) {
         this.type = type;
         this.description = description;
         this.price = price;
@@ -50,6 +55,8 @@ public class Local implements Serializable {
         this.roomsNumber = roomsNumber;
         this.area = area;
         this.address = address;
+        this.fileName= fileName;
+        this.filePath = filePath;
     }
 
     public long getIdLocal() {
@@ -114,6 +121,22 @@ public class Local implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public User getUser() {

@@ -28,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login",
                                         "/local/list",
                                         "/local/add",
+                                        "/local/upload",
+                                        "/local/delete/*",
                                         "/local/localById/*",
                                         "/local/isWishedByUser/*/*",
                                         "/agency/list",
